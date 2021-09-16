@@ -6,22 +6,60 @@ import api from '../../components/services/api'
 
 const MessagePage = (props) => {
     const [messages, setMessages] = useState([])
+    const [triggers, setTriggers] = useState([])
+    const [channels, setChannels] = useState([])
+
     const [searchTrigger, setSearchTrigger] = useState('')
     const [searchChannel, setSearchChannel] = useState('')
     const [searchTimer, setSearchTimer] = useState('')
 
-    useEffect(() => {
-        const handleGetMessages = async () => {
-            try {
-                const response = await api.get('/messages')
-                setMessages(response.data)
-            } catch (error) {
-                console.log(error)
-            }
+    const handleGetApiDatas = async () => {
+        try {
+            const responseMessages = await api.get('/messages')
+            const responseTriggers = await api.get('/triggers')
+            const responseChannels = await api.get('/channels')
+            
+            setMessages(responseMessages.data)
+            setTriggers(responseTriggers.data)
+            setChannels(responseChannels.data)
+        } catch (error) {
+            console.log(error)
         }
+    }
 
-        handleGetMessages();
+    useEffect(() => {
+        handleGetApiDatas();
     }, []);
+
+    // useEffect(() => {
+    //     const handleGetTriggers = async () => {
+    //         try {
+    //             const response = await api.get('/triggers')
+    //             setTriggers(response.data)
+    //         } catch (error) {
+    //             console.log(error)
+    //         }
+    //     }
+
+    
+
+    //     handleGetTriggers();
+    // }, []);
+
+    // useEffect(() => {
+    //     const handleGetChannels = async () => {
+    //         try {
+    //             const response = await api.get('/channels')
+    //             setChannels(response.data)
+    //         } catch (error) {
+    //             console.log(error)
+    //         }
+    //     }
+
+    
+
+    //     handleGetChannels();
+    // }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -47,22 +85,16 @@ const MessagePage = (props) => {
                     <label htmlFor="trigger">Gatilho: </label>
                     <select name="trigger" id="trigger" value={searchTrigger} onChange={(event) => setSearchTrigger(event.target.value)} >
                         <option defaultValue></option>
-                        <option value="abertura_conta">abertura_conta</option>
-                        <option value="fez_pix">fez_pix</option>
-                        <option value="recarregou_celular">recarregou_celular</option>
-                        <option value="alterou_dados_pessois">alterou_dados_pessois</option>
-                        <option value="consultou_saldo">consultou_saldo</option>
-                        <option value="fex_transferencia_outro_banco">fex_transferencia_outro_banco</option>
-                        <option value="deletou_chave_pix">deletou_chave_pix</option>
-                        <option value="criou_chave_pix">criou_chave_pix</option>
-                        <option value="falou_com_atendimento">falou_com_atendimento</option>
+                        {triggers.map((triggers) => {
+                            return <option key={triggers.id} value={triggers.name}>{triggers.name}</option>
+                        })}
                     </select>
                     <label htmlFor="channel">Canal: </label>
                     <select name="channel" id="channel" value={searchChannel} onChange={(event) => setSearchChannel(event.target.value)} >
-                        <option defaultValue></option>
-                        <option value="sms">sms</option>
-                        <option value="whatsapp">whatsapp</option>
-                        <option value="email">email</option>
+                    <option defaultValue></option>
+                        {channels.map((channels) => {
+                            return <option key={channels.id} value={channels.name}>{channels.name}</option>
+                        })}
                     </select>
                     <label htmlFor="timer">Tempo: </label>
                     <input type="text" value={searchTimer} onChange={(event) => setSearchTimer(event.target.value)} />

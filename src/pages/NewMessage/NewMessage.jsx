@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 
 import api from '../../components/services/api'
@@ -6,6 +6,9 @@ import api from '../../components/services/api'
 import './NewMessage.css'
 
 const NewMessage = () => {
+    const [triggers, setTriggers] = useState([])
+    const [channels, setChannels] = useState([])
+
     const [registerTrigger, setRegisterTrigger] = useState('')
     const [registerChannel, setRegisterChannel] = useState('')
     const [registerTimer, setRegisterTimer] = useState('')
@@ -25,6 +28,22 @@ const NewMessage = () => {
 
     }
 
+    const handleGetApiDatas = async () => {
+        try {
+            const responseTriggers = await api.get('/triggers')
+            const responseChannels = await api.get('/channels')
+
+            setTriggers(responseTriggers.data)
+            setChannels(responseChannels.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        handleGetApiDatas();
+    }, []);
+
     return (
         <>
             <Navbar />
@@ -40,23 +59,17 @@ const NewMessage = () => {
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="trigger">Gatilho: </label>
                     <select name="trigger" id="trigger" value={registerTrigger} onChange={(event) => setRegisterTrigger(event.target.value)} >
-                        <option defaultValue value></option>
-                        <option value="abertura_conta">abertura_conta</option>
-                        <option value="fez-pix">fez-pix</option>
-                        <option value="recarregou_celular">recarregou_celular</option>
-                        <option value="alterou_dados_pessois">alterou_dados_pessois</option>
-                        <option value="consultou_saldo">consultou_saldo</option>
-                        <option value="fex_transferencia_outro_banco">fex_transferencia_outro_banco</option>
-                        <option value="deletou_chave_pix">deletou_chave_pix</option>
-                        <option value="criou_chave_pix">criou_chave_pix</option>
-                        <option value="falou_com_atendimento">falou_com_atendimento</option>
+                        <option defaultValue></option>
+                        {triggers.map((triggers) => {
+                            return <option key={triggers.id} value={triggers.name}>{triggers.name}</option>
+                        })}
                     </select>
                     <label htmlFor="channel">Canal: </label>
                     <select name="channel" id="channel" value={registerChannel} onChange={(event) => setRegisterChannel(event.target.value)} >
-                        <option defaultValue value></option>
-                        <option value="sms">sms</option>
-                        <option value="whatsapp">whatsapp</option>
-                        <option value="email">email</option>
+                        <option defaultValue></option>
+                        {channels.map((channels) => {
+                            return <option key={channels.id} value={channels.name}>{channels.name}</option>
+                        })}
                     </select>
                     <label htmlFor="timer">Tempo: </label>
                     <input type="text" name="timer" value={registerTimer} onChange={(event) => setRegisterTimer(event.target.value)} />
