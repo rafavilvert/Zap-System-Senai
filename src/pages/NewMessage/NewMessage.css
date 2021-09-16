@@ -1,0 +1,38 @@
+ .title-main {
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     width: 90%;
+     margin: 0 auto;
+ }
+
+ .title-main button {
+    background-color: #44b7dd;
+    margin: 3px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+ }
+
+ .form-new-message {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 1px solid #ccc;
+    width: 60%;
+    margin: 10px auto;
+    padding-top: 15px;
+}
+
+.form-new-message textarea {
+    width: 80%;
+    height: 150px;
+    margin: 15px auto;
+    padding: 15px;
+    border: 2px solid rgba(68, 116, 221, 0.753);
+    border-radius: 20px;
+    outline: none;
+}
