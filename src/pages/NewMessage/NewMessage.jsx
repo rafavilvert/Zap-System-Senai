@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
+
+import api from '../../components/services/api'
 
 import './NewMessage.css'
 
 const NewMessage = () => {
+    const [registerTrigger, setRegisterTrigger] = useState('')
+    const [registerChannel, setRegisterChannel] = useState('')
+    const [registerTimer, setRegisterTimer] = useState('')
+    const [registermessage, setRegisterMessage] = useState('')
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const response = await api.post('/messages', {
+            trigger: registerTrigger,
+            channel: registerChannel,
+            timer: registerTimer,
+            message: registermessage
+        });
+        console.log(response.data);
+
+
+    }
+
     return (
         <>
             <Navbar />
@@ -12,13 +33,13 @@ const NewMessage = () => {
                 <h2>Menssagens</h2>
                 <div>
                     <button>Voltar</button>
-                    <button>Cadastrar</button>
+                    <button type='submit' onClick={handleSubmit}>Cadastrar</button>
                 </div>
             </div>
             <div className="form-new-message">
-                <div>
-                    <label htmlFor="trigger">Gatilho: </label> 
-                    <select name="trigger" id="trigger">
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="trigger">Gatilho: </label>
+                    <select name="trigger" id="trigger" value={registerTrigger} onChange={(event) => setRegisterTrigger(event.target.value)} >
                         <option defaultValue value></option>
                         <option value="abertura_conta">abertura_conta</option>
                         <option value="fez-pix">fez-pix</option>
@@ -31,17 +52,18 @@ const NewMessage = () => {
                         <option value="falou_com_atendimento">falou_com_atendimento</option>
                     </select>
                     <label htmlFor="channel">Canal: </label>
-                    <select name="channel" id="channel">
+                    <select name="channel" id="channel" value={registerChannel} onChange={(event) => setRegisterChannel(event.target.value)} >
                         <option defaultValue value></option>
                         <option value="sms">sms</option>
                         <option value="whatsapp">whatsapp</option>
                         <option value="email">email</option>
                     </select>
                     <label htmlFor="timer">Tempo: </label>
-                    <input type="time" name="timer" />
-                </div>
-                <label htmlFor="message">Menssagem: </label>
-                <textarea type="text" name="message" />
+                    <input type="text" name="timer" value={registerTimer} onChange={(event) => setRegisterTimer(event.target.value)} />
+
+                    <label htmlFor="message">Menssagem: </label>
+                    <textarea type="text" name="message" value={registermessage} onChange={(event) => setRegisterMessage(event.target.value)} />
+                </form>
             </div>
         </>
     );

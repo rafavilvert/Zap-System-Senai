@@ -40,7 +40,7 @@ const MessagePage = (props) => {
             <div>
                 <h2>Menssagens</h2>
                 <section>
-                    <button>Pesquisar</button>
+                    <button type='submit' onClick={handleSubmit}>Pesquisar</button>
                     <Link to="/newmessage"><button>Nova menssagem</button></Link>
                 </section>
                 <form onSubmit={handleSubmit}>
@@ -66,7 +66,6 @@ const MessagePage = (props) => {
                     </select>
                     <label htmlFor="timer">Tempo: </label>
                     <input type="text" value={searchTimer} onChange={(event) => setSearchTimer(event.target.value)} />
-                    <button type='submit'>Cadastrar</button>
                 </form>
             </div>
             <table>
