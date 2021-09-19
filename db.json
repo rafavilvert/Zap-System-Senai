@@ -43,74 +43,32 @@
       "id": 1631313726741
     },
     {
-      "trigger": "falou_com_atendimento",
-      "channel": "email",
-      "timer": "15:30",
-      "message": "Agora a bagaça funciona",
+      "trigger": "recarregou_celular",
+      "channel": "sms",
+      "timer": "55",
+      "message": "Teste com o yup validando castrato sucesso",
       "id": 1631313726742
     },
     {
-      "trigger": "deletou_chave_pix",
-      "channel": "whatsapp",
-      "timer": "36",
-      "message": "Você é tanso, deletou sua chave pix, volte duas casas.",
+      "trigger": "abertura_conta",
+      "channel": "email",
+      "timer": "15",
+      "message": "asdasd",
       "id": 1631313726743
     },
     {
-      "trigger": "recarregou_celular",
-      "channel": "sms",
-      "timer": "6",
-      "message": "Sua Recarga foi realizada com sucesso!.",
+      "trigger": "abertura_conta",
+      "channel": "whatsapp",
+      "timer": "33",
+      "message": "sds",
       "id": 1631313726744
     },
     {
-      "trigger": "fex_transferencia_outro_banco",
-      "channel": "sms",
-      "timer": "55",
-      "message": "Tranferiu do Banco do Brasil para a Conta Zap.",
-      "id": 1631313726745
-    },
-    {
-      "trigger": "alterou_dados_pessois",
-      "channel": "whatsapp",
-      "timer": "3",
-      "message": "CPF alterado",
-      "id": 1631313726746
-    },
-    {
-      "trigger": "alterou_dados_pessois",
-      "channel": "whatsapp",
-      "timer": "3",
-      "message": "CPF alterado",
-      "id": 1631313726747
-    },
-    {
-      "trigger": "alterou_dados_pessois",
-      "channel": "whatsapp",
-      "timer": "3",
-      "message": "CPF alterado",
-      "id": 1631313726748
-    },
-    {
-      "trigger": "alterou_dados_pessois",
-      "channel": "whatsapp",
-      "timer": "3",
-      "message": "CPF alterado",
-      "id": 1631313726749
-    },
-    {
-      "trigger": "alterou_dados_pessois",
-      "channel": "whatsapp",
-      "timer": "3",
-      "message": "CPF alterado",
-      "id": 1631313726750
-    },
-    {
       "trigger": "fez_pix",
-      "channel": "sms",
-      "timer": "5",
-      "message": "PIX internacional ",
-      "id": 1631313726751
+      "channel": "whatsapp",
+      "timer": "17:45",
+      "message": "Teste com o TIME",
+      "id": 1631313726745
     }
   ],
   "channels": [

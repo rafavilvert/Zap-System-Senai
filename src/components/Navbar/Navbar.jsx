@@ -5,12 +5,10 @@ import './Navbar.css'
 
 const Navbar = (props) => {
     return (
-        <nav className={`navbar ${props.class}`}>
-            <div className="topnav">
-                <Link className="active" to="/">ZAP - System</Link>
-                <Link to="/dashboard">Dashboard</Link>
-                <Link to="/messages">Mensagens</Link>
-            </div>
+        <nav className="navbar navbar-dark bg-primary d-flex justify-content-start mb-3">
+            <Link to='/' className="navbar-brand" >Zap-System</Link>
+            <Link to='/dashboard' className="navbar-brand">Dashboard</Link>
+            <Link to='/messages' className="navbar-brand" >Menssagens</Link>
         </nav>
     );
 }
