@@ -1,32 +1,39 @@
 {
   "messages": [
     {
+      "id": 1,
       "channel": "sms",
-      "trigger": "recarregou_celular",
-      "timer": "06:06",
-      "message": "Recarga de R$ 15,00 realizada com sucesso.",
-      "id": 1
+      "trigger": "abertura_conta",
+      "timer": "15:00",
+      "message": " Na correria do dia a dia a Oi Conta Zap te ajuda a lembrar de algumas coisinhas! Ja conseguiu pagar seu boleto? Se sim, desconsidere a mensagem"
     },
     {
-      "id": 21,
+      "id": 2,
       "channel": "sms",
       "trigger": "fez_pix",
       "timer": "5:00",
       "message": " Na correria do dia a dia a Oi Conta Zap te ajuda a lembrar de algumas coisinhas! Ja conseguiu pagar seu boleto? Se sim, desconsidere a mensagem"
     },
     {
-      "id": 1,
+      "id": 3,
       "channel": "whatsapp",
       "trigger": "abertura_conta",
       "timer": "73:00",
       "message": " Na correria do dia a dia a Oi Conta Zap te ajuda a lembrar de algumas coisinhas! Ja conseguiu pagar seu boleto? Se sim, desconsidere a mensagem"
     },
     {
-      "id": 1631312843768,
+      "id": 4,
       "channel": "whatsapp",
       "trigger": "criou_chave_pix",
       "timer": "12:00",
       "message": "vI  que você criou um chave ?"
+    },
+    {
+      "id": 5,
+      "channel": "email",
+      "trigger": "fez_pix",
+      "timer": "2323",
+      "message": "23232323"
     }
   ],
   "channels": [

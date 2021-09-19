@@ -53,11 +53,20 @@ const NewMessage = () => {
             setRegisterTimer('');
             setRegisterMessage('');
 
-            Swal.fire(
-                'Menssagem cadastrada com sucesse!!',
-                '',
-                'success'
-            )
+            Swal.fire({
+                title: 'Menssagem cadastrada com sussesso!!',
+                text: 'Cadastrar nova menssagem?',
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, Cadastrar!',
+                cancelButtonText: 'Voltar para listagem'
+            }).then((result) => {
+                if (!result.isConfirmed) {
+                    history.goBack('/messages')
+                }
+            })
 
         } catch (error) {
             Swal.fire({
@@ -142,11 +151,11 @@ const NewMessage = () => {
                                 onChange={(event) => setRegisterMessage(event.target.value)} />
                         </div>
                         <div className="d-flex w-75 ml-auto mr-auto">
-                        <Input className="btn btn-outline-primary" type="submit" value="Salvar" />
-                        <Input className="btn btn-outline-secondary ml-2" 
-                                    type="button" 
-                                    onClick={() => history.goBack('/messages')} 
-                                    value="Cancelar" />
+                            <Input className="btn btn-outline-primary" type="submit" value="Salvar" />
+                            <Input className="btn btn-outline-secondary ml-2"
+                                type="button"
+                                onClick={() => history.goBack('/messages')}
+                                value="Cancelar" />
                         </div>
                     </FormGroup>
                 </form>
