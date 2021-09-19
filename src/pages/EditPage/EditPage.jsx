@@ -24,11 +24,21 @@ const EditPage = (props) => {
     const [registerTrigger, setRegisterTrigger] = useState('')
     const [registerChannel, setRegisterChannel] = useState('')
     const [registerTimer, setRegisterTimer] = useState('')
-    const [registermessage, setRegisterMessage] = useState('')
+    const [registermessage, setRegisterMessage] = useState()
 
     const history = useHistory();
 
     const dados = props.match.params.id
+
+    const getMessages = async () => {
+
+        const response = await api.get(`/messages/${dados}`);
+        setRegisterMessage(response.data.message);
+        setRegisterTrigger(response.data.trigger)
+        setRegisterChannel(response.data.channel)
+        setRegisterTimer(response.data.timer)
+        
+    }  
 
     const handleEdit = async (event) => {
         try {
@@ -93,6 +103,7 @@ const EditPage = (props) => {
     useEffect(() => {
         handleGetTriggers();
         handleGetChannels();
+        getMessages();
     }, []);
 
     return (
@@ -121,7 +132,7 @@ const EditPage = (props) => {
                                     })}
                                 </Input>
                             </div>
-                            <div>
+                            <div className="ml-2">
                                 <Label htmlFor="channel">Canal: </Label>
                                 <Input type="select" name="channel" id="channel" bsSize="lg" value={registerChannel} onChange={(event) => setRegisterChannel(event.target.value)} >
                                     <option defaultValue></option>
@@ -130,9 +141,9 @@ const EditPage = (props) => {
                                     })}
                                 </Input>
                             </div>
-                            <div>
+                            <div className="ml-2">
                                 <Label htmlFor="timer">Tempo: </Label>
-                                <Input type="time" name="timer" bsSize="lg" value={registerTimer} onChange={(event) => setRegisterTimer(event.target.value)} />
+                                <Input type="text" name="timer" bsSize="lg" value={registerTimer} onChange={(event) => setRegisterTimer(event.target.value)} />
                             </div>
                         </div>
                         <div className="w-100 ml-auto mr-auto">

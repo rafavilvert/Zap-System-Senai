@@ -1,11 +1,11 @@
 {
   "messages": [
     {
-      "id": 1,
-      "channel": "sms",
+      "channel": "email",
       "trigger": "abertura_conta",
-      "timer": "15:00",
-      "message": " Na correria do dia a dia a Oi Conta Zap te ajuda a lembrar de algumas coisinhas! Ja conseguiu pagar seu boleto? Se sim, desconsidere a mensagem"
+      "timer": "05:59",
+      "message": "Recarga de R$ 50,00 realizada com sucesso!!. Ficou top agora.",
+      "id": 1
     },
     {
       "id": 2,
