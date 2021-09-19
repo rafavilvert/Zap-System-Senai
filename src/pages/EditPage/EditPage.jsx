@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import Navbar from '../../components/Navbar/Navbar';
 
 import api from '../../components/services/api'
@@ -25,11 +26,11 @@ const EditPage = (props) => {
     const [registerTimer, setRegisterTimer] = useState('')
     const [registermessage, setRegisterMessage] = useState('')
 
-    const [getMessages, setGetMessages] = useState('');
-    const dados = props.match.params.id
-    console.log(dados);
+    const history = useHistory();
 
-    const handleSubmit = async (event) => {
+    const dados = props.match.params.id
+
+    const handleEdit = async (event) => {
         try {
             event.preventDefault();
 
@@ -48,23 +49,18 @@ const EditPage = (props) => {
                 "message": registermessage
             });
 
-            await api.post('/messages', {
-                trigger: registerTrigger,
-                channel: registerChannel,
-                timer: registerTimer,
-                message: registermessage
-            });
-
             setRegisterTrigger('');
             setRegisterChannel('');
             setRegisterTimer('');
             setRegisterMessage('');
 
             Swal.fire(
-                'Menssagem cadastrada com sucesse!!',
+                'Menssagem editada com sucesse!!',
                 '',
                 'success'
             )
+
+            history.goBack('/messages')
 
         } catch (error) {
             Swal.fire({
@@ -75,16 +71,6 @@ const EditPage = (props) => {
             })
         }
     }
-
-    // const handleEdit = async () => {
-
-    //     await api.put(`/messages/${dados}`, {
-    //         "channel": "Teste",
-    //         "trigger": "Testando",
-    //         "timer": "100:100",
-    //         "message": "Isso aqui é um teste"
-    //     });
-    // }
 
     const handleGetTriggers = async () => {
         try {
@@ -123,7 +109,7 @@ const EditPage = (props) => {
                 </section>
             </div>
             <div className="form-new-message rounded border border-info w-75">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleEdit}>
                     <FormGroup className="p-5 rounded">
                         <div className="d-flex justify-content-around w-100 ml-auto mr-auto mb-3">
                             <div>
@@ -158,7 +144,13 @@ const EditPage = (props) => {
                                 value={registermessage}
                                 onChange={(event) => setRegisterMessage(event.target.value)} />
                         </div>
-                        <Input className="btn btn-outline-primary w-75" type="submit" value="Salvar" />
+                        <div className="d-flex w-75 ml-auto mr-auto">
+                            <Input className="btn btn-outline-primary" type="submit" value="Salvar" />
+                            <Input className="btn btn-outline-secondary ml-2" 
+                                    type="button" 
+                                    onClick={() => history.goBack('/messages')} 
+                                    value="Cancelar" />
+                        </div>
                     </FormGroup>
                 </form>
             </div>

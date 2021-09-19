@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import Navbar from '../../components/Navbar/Navbar';
 
 import api from '../../components/services/api'
@@ -25,6 +26,8 @@ const NewMessage = () => {
     const [registerChannel, setRegisterChannel] = useState('')
     const [registerTimer, setRegisterTimer] = useState('')
     const [registermessage, setRegisterMessage] = useState('')
+
+    const history = useHistory();
 
     const handleSubmit = async (event) => {
         try {
@@ -138,7 +141,13 @@ const NewMessage = () => {
                                 value={registermessage}
                                 onChange={(event) => setRegisterMessage(event.target.value)} />
                         </div>
-                        <Input className="btn btn-outline-primary w-75" type="submit" value="Salvar" />
+                        <div className="d-flex w-75 ml-auto mr-auto">
+                        <Input className="btn btn-outline-primary" type="submit" value="Salvar" />
+                        <Input className="btn btn-outline-secondary ml-2" 
+                                    type="button" 
+                                    onClick={() => history.goBack('/messages')} 
+                                    value="Cancelar" />
+                        </div>
                     </FormGroup>
                 </form>
             </div>

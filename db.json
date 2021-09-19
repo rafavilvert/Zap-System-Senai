@@ -2,9 +2,9 @@
   "messages": [
     {
       "channel": "sms",
-      "trigger": "abertura_conta",
-      "timer": "10:10",
-      "message": "Isso aqui com certeza vai funcionar.",
+      "trigger": "recarregou_celular",
+      "timer": "06:06",
+      "message": "Recarga de R$ 15,00 realizada com sucesso.",
       "id": 1
     },
     {
@@ -15,7 +15,7 @@
       "message": " Na correria do dia a dia a Oi Conta Zap te ajuda a lembrar de algumas coisinhas! Ja conseguiu pagar seu boleto? Se sim, desconsidere a mensagem"
     },
     {
-      "id": 3,
+      "id": 1,
       "channel": "whatsapp",
       "trigger": "abertura_conta",
       "timer": "73:00",
@@ -27,20 +27,6 @@
       "trigger": "criou_chave_pix",
       "timer": "12:00",
       "message": "vI  que você criou um chave ?"
-    },
-    {
-      "id": 1631313726738,
-      "channel": "email",
-      "trigger": "fez_pix",
-      "timer": "2323",
-      "message": "23232323"
-    },
-    {
-      "trigger": "abertura_conta",
-      "channel": "sms",
-      "timer": "10:10",
-      "message": "Isso aqui com certeza vai funcionar.",
-      "id": 1631313726739
     }
   ],
   "channels": [

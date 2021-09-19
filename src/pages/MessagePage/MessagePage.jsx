@@ -66,27 +66,6 @@ const MessagePage = () => {
         })
     }
 
-    // const handleEdit = async () => {
-    //     return(
-    //     <>
-    //         <Modal  onHide="TEste">
-    //             <Modal.Header closeButton>
-    //                 <Modal.Title>Modal heading</Modal.Title>
-    //             </Modal.Header>
-    //             <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-    //             <Modal.Footer>
-    //                 <Button variant="secondary" onClick="Olá">
-    //                     Close
-    //                 </Button>
-    //                 <Button variant="primary" onClick="Hello">
-    //                     Save Changes
-    //                 </Button>
-    //             </Modal.Footer>
-    //         </Modal>
-    //     </>
-    //     )
-    // }
-
     const handleGetMessages = async () => {
         try {
             const responseMessages = await api.get('/messages')
