@@ -4,7 +4,7 @@
       "channel": "email",
       "trigger": "abertura_conta",
       "timer": "05:59",
-      "message": "Recarga de R$ 50,00 realizada com sucesso!!. Ficou top agora.",
+      "message": "Recarga de R$ 50,00 realizada com sucesso!!",
       "id": 1
     },
     {
