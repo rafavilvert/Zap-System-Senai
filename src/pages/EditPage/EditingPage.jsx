@@ -26,6 +26,9 @@ const NewMessage = () => {
     const [registerTimer, setRegisterTimer] = useState('')
     const [registermessage, setRegisterMessage] = useState('')
 
+    const [getMessages, setGetMessages] = useState('');
+    const dados = props.match.params.id
+
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
@@ -64,6 +67,12 @@ const NewMessage = () => {
                 confirmButtonText: 'ok'
             })
         }
+    }
+
+    const handleEdit = async () => {
+
+        const response = await api.get(`/messages?id=${dados}`);
+        setGetMessages(response.data);
     }
 
     const handleGetTriggers = async () => {

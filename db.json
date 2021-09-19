@@ -1,11 +1,11 @@
 {
   "messages": [
     {
-      "id": 1,
       "channel": "sms",
       "trigger": "abertura_conta",
-      "timer": "15:00",
-      "message": " Na correria do dia a dia a Oi Conta Zap te ajuda a lembrar de algumas coisinhas! Ja conseguiu pagar seu boleto? Se sim, desconsidere a mensagem"
+      "timer": "10:10",
+      "message": "Isso aqui com certeza vai funcionar.",
+      "id": 1
     },
     {
       "id": 21,
@@ -36,39 +36,11 @@
       "message": "23232323"
     },
     {
-      "trigger": "você é um zapper",
-      "channel": "telefonema",
-      "timer": "20",
-      "message": "Você ganhou na casa feliz",
-      "id": 1631313726741
-    },
-    {
-      "trigger": "recarregou_celular",
+      "trigger": "abertura_conta",
       "channel": "sms",
-      "timer": "55",
-      "message": "Teste com o yup validando castrato sucesso",
-      "id": 1631313726742
-    },
-    {
-      "trigger": "abertura_conta",
-      "channel": "email",
-      "timer": "15",
-      "message": "asdasd",
-      "id": 1631313726743
-    },
-    {
-      "trigger": "abertura_conta",
-      "channel": "whatsapp",
-      "timer": "33",
-      "message": "sds",
-      "id": 1631313726744
-    },
-    {
-      "trigger": "fez_pix",
-      "channel": "whatsapp",
-      "timer": "17:45",
-      "message": "Teste com o TIME",
-      "id": 1631313726745
+      "timer": "10:10",
+      "message": "Isso aqui com certeza vai funcionar.",
+      "id": 1631313726739
     }
   ],
   "channels": [

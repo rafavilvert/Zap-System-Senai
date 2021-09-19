@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 
+import api from '../../components/services/api'
+
 import { Table, Button, Label, Input, FormGroup } from 'reactstrap';
 import SearchIcon from '../../assets/images/icons/search.svg'
-
-import api from '../../components/services/api'
 import Swal from 'sweetalert2'
 
-const MessagePage = (props) => {
+const MessagePage = () => {
+
     const [messages, setMessages] = useState([])
     const [triggers, setTriggers] = useState([])
     const [channels, setChannels] = useState([])
@@ -16,7 +17,6 @@ const MessagePage = (props) => {
     const [searchTrigger, setSearchTrigger] = useState('')
     const [searchChannel, setSearchChannel] = useState('')
     const [searchTimer, setSearchTimer] = useState('')
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -28,6 +28,64 @@ const MessagePage = (props) => {
         setSearchChannel('');
         setSearchTimer('');
     }
+
+    const handleDelete = async (id, trigger, channel, message) => {
+
+        Swal.fire({
+            title: 'Tem certeza que deseja excluir esses dados?',
+            text: `Gatilho: ${trigger} - Canal: ${channel} - Menssagem: ${message}`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, Excluir!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                {
+                    api.delete(`/messages/${id}`);
+
+                    const newMessageList = messages.filter((message) => {
+                        return message.id !== id;
+                    })
+
+                    Swal.fire({
+                        title: 'Menssagem deletada!',
+                        text: '',
+                        icon: 'success',
+                        confirmButtonText: 'ok'
+                    })
+
+                    setMessages(newMessageList)
+                }
+                Swal.fire(
+                    'Dados excluidos com sucesso!',
+                    '',
+                    'success'
+                )
+            }
+        })
+    }
+
+    // const handleEdit = async () => {
+    //     return(
+    //     <>
+    //         <Modal  onHide="TEste">
+    //             <Modal.Header closeButton>
+    //                 <Modal.Title>Modal heading</Modal.Title>
+    //             </Modal.Header>
+    //             <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+    //             <Modal.Footer>
+    //                 <Button variant="secondary" onClick="Olá">
+    //                     Close
+    //                 </Button>
+    //                 <Button variant="primary" onClick="Hello">
+    //                     Save Changes
+    //                 </Button>
+    //             </Modal.Footer>
+    //         </Modal>
+    //     </>
+    //     )
+    // }
 
     const handleGetMessages = async () => {
         try {
@@ -122,11 +180,24 @@ const MessagePage = (props) => {
                                 <td>{messages.timer}</td>
                                 <td>
                                     <Button className="ml-2 btn btn-outline-success" color="primary" onClick={() => Swal.fire({
-                                            title: 'Messagem: ',
-                                            text: messages.message,
-                                            icon: 'info',
-                                            confirmButtonText: 'ok'
-                                        })}>Ver menssagem</Button>
+                                        title: 'Messagem: ',
+                                        text: messages.message,
+                                        icon: 'info',
+                                        confirmButtonText: 'ok'
+                                    })}>
+                                        Ver menssagem
+                                    </Button>
+                                    <Link to={`/editingmessage/${messages.id}`}>
+                                        <Button className="ml-2 btn btn-outline-secondary"
+                                            color="primary">
+                                            Editar
+                                        </Button>
+                                    </Link>
+                                    <Button className="ml-2 btn btn-outline-danger"
+                                        color="primary"
+                                        onClick={() => handleDelete(messages.id, messages.trigger, messages.channel, messages.message)}>
+                                        Excluir
+                                    </Button>
                                 </td>
                             </tr>
 

@@ -7,7 +7,6 @@ import * as yup from 'yup';
 import { Button, FormGroup, Label, Input } from 'reactstrap';
 import Swal from 'sweetalert2'
 
-import './NewMessage.css'
 import { Link } from 'react-router-dom';
 
 const schema = yup.object().shape({
@@ -17,7 +16,7 @@ const schema = yup.object().shape({
     registerTrigger: yup.string().required('Campo gatilho é obrigatório'),
 })
 
-const NewMessage = () => {
+const EditPage = (props) => {
     const [triggers, setTriggers] = useState([])
     const [channels, setChannels] = useState([])
 
@@ -25,6 +24,10 @@ const NewMessage = () => {
     const [registerChannel, setRegisterChannel] = useState('')
     const [registerTimer, setRegisterTimer] = useState('')
     const [registermessage, setRegisterMessage] = useState('')
+
+    const [getMessages, setGetMessages] = useState('');
+    const dados = props.match.params.id
+    console.log(dados);
 
     const handleSubmit = async (event) => {
         try {
@@ -37,6 +40,13 @@ const NewMessage = () => {
                 registerChannel,
                 registerTrigger,
             })
+
+            await api.put(`/messages/${dados}`, {
+                "channel": registerChannel,
+                "trigger": registerTrigger,
+                "timer": registerTimer,
+                "message": registermessage
+            });
 
             await api.post('/messages', {
                 trigger: registerTrigger,
@@ -65,6 +75,16 @@ const NewMessage = () => {
             })
         }
     }
+
+    // const handleEdit = async () => {
+
+    //     await api.put(`/messages/${dados}`, {
+    //         "channel": "Teste",
+    //         "trigger": "Testando",
+    //         "timer": "100:100",
+    //         "message": "Isso aqui é um teste"
+    //     });
+    // }
 
     const handleGetTriggers = async () => {
         try {
@@ -146,4 +166,4 @@ const NewMessage = () => {
     );
 }
 
-export default NewMessage;
+export default EditPage;
